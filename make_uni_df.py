@@ -26,4 +26,10 @@ def get_dummied_df():
     uni_dummied_df.loc[uni_dummied_df['Beziehungsstatus'] == 5, 'Keine_Angabe'] = 1  # Set 'NewColumn' to 1 where the condition is True
     uni_dummied_df.drop('Beziehungsstatus', axis=1, inplace=True)
     uni_dummied_df.drop('Geschlecht', axis=1, inplace=True)
+
+    columns_list = uni_dummied_df.columns
+    columns_without_spaces = [column_name.replace(" ", "_").replace("-", "_").replace(".", "") for column_name in
+                              columns_list]
+    uni_dummied_df.columns = columns_without_spaces
+
     return uni_dummied_df
